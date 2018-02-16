@@ -33,19 +33,17 @@ class App extends Component {
 
     this.state = {
       max: 0,
-      ratio: 0.8,
+      ratio: 80,
       sets: 5,
       smallestIncrement: 2.5,
       weightPerSet: 0,
     };
   }
 
-  componentDidMount() {}
-
   recalc() {
     const { max, ratio, sets, smallestIncrement } = this.state;
 
-    this.setState({ weightPerSet: calc(max, ratio, sets, smallestIncrement) });
+    this.setState({ weightPerSet: calc(max, ratio / 100, sets, smallestIncrement) });
   }
 
   update(key, value) {
@@ -61,11 +59,13 @@ class App extends Component {
   render() {
     const { max, ratio, sets, smallestIncrement, weightPerSet } = this.state;
 
+    const setWeights = this.setsWeight(max, sets, weightPerSet);
+
     return (
       <div className="App">
         <Menu inverted className="App__top">
           <Container text style={{ justifyContent: 'center' }}>
-            <Header inverted>Test your might</Header>
+            <Header inverted>5X5 STRENGTH CALC</Header>
           </Container>
         </Menu>
         <Container text>
@@ -97,7 +97,17 @@ class App extends Component {
               rightLabel="kg"
           />
 
-          <div>{this.setsWeight(max, sets, weightPerSet).join(', ')}</div>
+          <div className="Sets">
+            {setWeights.map((weight, index) => (
+                <div key={index} className="Set">
+                  <Header as="h4">Set #{index + 1}</Header>
+                  <div>{weight} kg</div>
+                </div>
+            ))}
+          </div>
+
+          <Header as="h4">Add each round</Header>
+          <div>{weightPerSet} kg</div>
         </Container>
       </div>
     );

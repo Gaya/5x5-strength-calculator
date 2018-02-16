@@ -1,8 +1,14 @@
 .App__field {
-  margin-bottom: 12px;
+  margin-bottom: 15px;
 }
 
 .App__top {
   border-radius: 0!important;
   align-items: center;
+}
+
+.Sets {
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
 }
