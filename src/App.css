@@ -1,12 +1,8 @@
-.App {
-  padding: 20px;
-}
-
-.App label {
-  width: 200px;
-}
-
 .App__field {
   margin-bottom: 12px;
-  display: flex;
+}
+
+.App__top {
+  border-radius: 0!important;
+  align-items: center;
 }
