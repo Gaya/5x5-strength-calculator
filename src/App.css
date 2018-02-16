@@ -1,5 +1,6 @@
 .App__field {
   margin-bottom: 15px;
+  width: 48%;
 }
 
 .App__top {
@@ -11,4 +12,13 @@
   margin-top: 25px;
   display: flex;
   justify-content: space-between;
+}
+
+.Fields {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Fields .input {
+  width: 75%!important;
 }

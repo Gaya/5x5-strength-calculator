@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Menu, Header, Input } from 'semantic-ui-react';
+import { Container, Menu, Header, Input, Grid, Form } from 'semantic-ui-react';
 
 import calc from './calc';
 
@@ -73,33 +73,38 @@ class App extends Component {
           </Container>
         </Menu>
         <Container text>
-          <Field
-              name="max"
-              label="Max"
-              value={max}
-              onChange={(e) => this.update('max', e.target.value)}
-              rightLabel="kg"
-          />
-          <Field
-              name="ratio"
-              label="Start ratio"
-              value={ratio}
-              onChange={(e) => this.update('ratio', e.target.value)}
-              rightLabel="%"
-          />
-          <Field
-              name="sets"
-              label="# of sets"
-              value={sets}
-              onChange={(e) => this.update('sets', e.target.value)}
-          />
-          <Field
-              name="smallestIncrement"
-              label="Smallest increment"
-              value={smallestIncrement}
-              onChange={(e) => this.update('smallestIncrement', e.target.value)}
-              rightLabel="kg"
-          />
+          <div className="Fields">
+            <Field
+                name="max"
+                label="Max"
+                value={max}
+                onChange={(e) => this.update('max', e.target.value)}
+                rightLabel="kg"
+            />
+            <Field
+                name="ratio"
+                label="Start ratio"
+                value={ratio}
+                onChange={(e) => this.update('ratio', e.target.value)}
+                rightLabel="%"
+            />
+          </div>
+
+          <div className="Fields">
+            <Field
+                name="sets"
+                label="# of sets"
+                value={sets}
+                onChange={(e) => this.update('sets', e.target.value)}
+            />
+            <Field
+                name="smallestIncrement"
+                label="Smallest increment"
+                value={smallestIncrement}
+                onChange={(e) => this.update('smallestIncrement', e.target.value)}
+                rightLabel="kg"
+            />
+          </div>
 
           <div className="Sets">
             {setWeights.map((weight, index) => (
