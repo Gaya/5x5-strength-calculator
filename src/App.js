@@ -5,6 +5,10 @@ import calc from './calc';
 
 import './App.css';
 
+function setsWeight(max, sets, weightPerSet) {
+  return new Array(sets).fill(0).map((i, index) => max - (((sets - 1) - index) * weightPerSet));
+}
+
 function Field({ name, label, value, rightLabel, onChange }) {
   const inputLabel = rightLabel ? {
     label: { basic: true, content: rightLabel },
@@ -40,6 +44,10 @@ class App extends Component {
     };
   }
 
+  componentDidMount() {
+    window.scrollTo(0, 1);
+  }
+
   recalc() {
     const { max, ratio, sets, smallestIncrement } = this.state;
 
@@ -52,14 +60,10 @@ class App extends Component {
     }, this.recalc.bind(this));
   }
 
-  setsWeight(max, sets, weightPerSet) {
-    return new Array(sets).fill(0).map((i, index) => max - (((sets - 1) - index) * weightPerSet));
-  }
-
   render() {
     const { max, ratio, sets, smallestIncrement, weightPerSet } = this.state;
 
-    const setWeights = this.setsWeight(max, sets, weightPerSet);
+    const setWeights = setsWeight(max, sets, weightPerSet);
 
     return (
       <div className="App">
