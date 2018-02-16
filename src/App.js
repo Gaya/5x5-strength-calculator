@@ -28,7 +28,7 @@ class App extends Component {
       ratio: 0.8,
       sets: 5,
       smallestIncrement: 2.5,
-      calced: [],
+      weightPerSet: 0,
     };
   }
 
@@ -37,7 +37,7 @@ class App extends Component {
   recalc() {
     const { max, ratio, sets, smallestIncrement } = this.state;
 
-    this.setState({ calced: calc(max, ratio, sets, smallestIncrement) });
+    this.setState({ weightPerSet: calc(max, ratio, sets, smallestIncrement) });
   }
 
   update(key, value) {
@@ -46,8 +46,12 @@ class App extends Component {
     }, this.recalc.bind(this));
   }
 
+  setsWeight(max, sets, weightPerSet) {
+    return new Array(sets).fill(0).map((i, index) => max - (((sets - 1) - index) * weightPerSet));
+  }
+
   render() {
-    const { max, ratio, sets, smallestIncrement, calced } = this.state;
+    const { max, ratio, sets, smallestIncrement, weightPerSet } = this.state;
 
     return (
       <div className="App">
@@ -76,7 +80,7 @@ class App extends Component {
             onChange={(e) => this.update('smallestIncrement', e.target.value)}
         />
 
-        <div>{calced.join(', ')}</div>
+        <div>{this.setsWeight(max, sets, weightPerSet).join(', ')}</div>
       </div>
     );
   }
